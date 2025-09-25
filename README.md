@@ -1,4 +1,5 @@
-# delivery-performance-and-prediction
+# Finally, it’s always six: When physical isn’t enough - Evaluasi Performa Pengantaran Berdasarkan Dataset Zomato
+
 ## Latar Belakang Proyek
 Dataset yang digunakan berasal dari salah satu perusahaan layanan pesan antar makanan yaitu **Zomato**. Zomato merupakan platform berbasis di India yang menyediakan layanan pemesanan dan pengantaran makanan dari berbagai kategori. Layanan ini beroperasi di tiga jenis wilayah yaitu **metropolitan**, **urban**, dan **semi-urban**.
 
@@ -128,6 +129,53 @@ Fitur paling berpengaruh dalam model adalah:
 4. `vehicle_condition` (kondisi kendaraan)
 
 Keempat fitur ini merepresentasikan aspek **teknis** dari proses pengantaran. Oleh karena itu, model menyarankan bahwa peningkatan terhadap fitur-fitur ini dapat membantu mempercepat waktu pengantaran dan meningkatkan efisiensi.
+
+### 2. Rekomendasi
+
+Berdasarkan temuan dari analisis data dan hasil pemodelan, berikut adalah beberapa rekomendasi yang dapat dilakukan untuk meningkatkan kualitas layanan pengantaran:
+
+#### Evaluasi Data dan Penilaian
+
+Untuk memperoleh hasil evaluasi performa kurir yang lebih komprehensif, perlu adanya perbaikan dan pelengkapan dalam sistem pencatatan data:
+
+- **Menambahkan dimensi kualitatif** yang dapat mengukur faktor interpersonal, seperti sikap dan interaksi kurir dengan pelanggan
+- **Memperbaiki dan mewajibkan pengisian data tertentu** yang masih banyak kosong, terutama pada kategori remaja dan mature
+- **Melengkapi sistem penilaian** dengan memberikan opsi alasan dari rating yang diberikan, agar lebih mudah diinterpretasi dan ditindaklanjuti
+
+#### Aspek Fisik Layanan
+
+Untuk meningkatkan efisiensi dan ketepatan waktu pengantaran, berikut rekomendasi dari sisi operasional:
+
+- **Melakukan perawatan kendaraan secara berkala** untuk menjaga performa kurir dan mengurangi risiko keterlambatan
+- **Melatih efisiensi proses kerja kurir**, khususnya dalam tahap pick-up hingga delivery
+- **Mengoptimalkan rute dan navigasi**, yang dapat dilakukan dengan dukungan teknologi prediksi durasi pengantaran
+
+> Optimalisasi ini dapat memanfaatkan model **LightGBM** yang telah dibangun dalam proyek ini.  
+> Berdasarkan hasil analisis **feature importance**, faktor yang paling berpengaruh terhadap durasi pengantaran adalah:
+>
+> 1. `Weather_conditions` (kondisi cuaca)  
+> 2. `distance_km` (jarak pengantaran)  
+> 3. `Road_traffic_density` (kepadatan lalu lintas)  
+> 4. `vehicle_condition` (kondisi kendaraan)  
+>
+> Dengan mengetahui faktor-faktor tersebut, perusahaan dapat lebih fokus dalam melakukan perbaikan operasional yang berdampak langsung terhadap waktu pengiriman.
+
+#### Pengembangan Soft Skill Kurir
+
+Selain faktor teknis, hasil analisis menunjukkan bahwa **kurir usia mature** cenderung mendapatkan **rating yang sempurna** dalam berbagai kondisi.
+
+Rekomendasi dari sisi soft skill:
+
+- **Memberikan pelatihan soft skill** kepada kurir lain, terutama dalam hal komunikasi, sikap, dan cara berinteraksi dengan pelanggan
+- **Menjadikan kurir mature sebagai role model**, karena performa mereka secara konsisten dinilai baik oleh pelanggan meskipun kondisi teknis mereka tidak selalu optimal
+
+### 3. Dampak Potensial
+
+Berdasarkan hasil analisis dan rekomendasi yang telah diberikan, implementasi perbaikan berpotensi memberikan dampak signifikan dalam berbagai aspek. Dari sisi operasional, perusahaan dapat meningkatkan efisiensi pengantaran dengan memanfaatkan informasi dari model prediktif serta penguatan pada faktor-faktor teknis yang paling berpengaruh, seperti kondisi cuaca, jarak tempuh, kepadatan lalu lintas, dan kondisi kendaraan. Penerapan strategi ini diharapkan mampu menurunkan waktu pengantaran secara keseluruhan dan meningkatkan ketepatan waktu layanan.
+
+Di sisi lain, perbaikan sistem evaluasi dan pencatatan data juga memungkinkan perusahaan untuk menilai kinerja kurir secara lebih adil dan menyeluruh, tidak hanya dari aspek kuantitatif, tetapi juga dari sisi interpersonal dan pengalaman pelanggan. Hal ini dapat meningkatkan akurasi dalam pengambilan keputusan manajerial, seperti pemberian pelatihan, insentif, atau pengelompokan penugasan.
+
+Selain itu, pengembangan soft skill kurir juga berpotensi meningkatkan kepuasan pelanggan secara signifikan. Temuan bahwa kurir berusia mature mendapatkan penilaian yang sangat baik terlepas dari kondisi teknis menunjukkan bahwa aspek sikap dan interaksi juga sangat memengaruhi persepsi layanan. Oleh karena itu, mengadopsi pendekatan yang lebih holistik—menggabungkan optimalisasi teknis dan penguatan soft skill—dapat membentuk standar layanan yang lebih unggul dan berkesinambungan.
 
 
 
