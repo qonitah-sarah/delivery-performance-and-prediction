@@ -91,6 +91,44 @@ Model yang digunakan adalah tiga algoritma **tree-based regression**:
 ### 9. Feature Importance
 Setelah model terbaik dipilih dan dituning, dilakukan analisis **feature importance** untuk mengetahui variabel mana saja yang paling berpengaruh terhadap durasi pengantaran.
 
+## Ikhtisar Eksekutif
+
+### Ikhtisar Temuan
+<img width="2042" height="1154" alt="Screenshot 2025-07-19 073941" src="https://github.com/user-attachments/assets/80f4728c-ada5-4d75-bc4c-1ffbe2a0e639" />
+
+Berdasarkan hasil analisis data, ditemukan beberapa pola dan insight penting terkait performa pengantaran berdasarkan kelompok usia kurir dan kondisi pengantaran:
+
+- **Total pengantar** sebanyak **1.320 orang**, dan seluruhnya pernah melakukan pengantaran di wilayah **metropolitan**, namun hanya **11,28%** yang pernah ke wilayah **semi-urban**.
+- Kurir diklasifikasikan berdasarkan usia ke dalam 4 kategori menurut WHO:
+  - **Remaja (15 tahun)**
+  - **Dewasa muda (20–29 tahun)**
+  - **Dewasa (30–39 tahun)**
+  - **Mature (50 tahun)**
+- **Remaja** hanya mengantar di wilayah metropolitan dan urban, dan seluruhnya menerima rating **buruk**. Mereka juga memiliki kondisi kendaraan yang **buruk**, dan beberapa informasi penting seperti waktu order, cuaca, dan kepadatan jalan tidak tersedia, sehingga analisis terbatas.
+- **Dewasa muda** sebagian kecil menerima rating buruk, yang dikaitkan dengan:
+  - **Durasi pick-up** yang lama
+  - **Jarak pengantaran yang jauh**
+  - **Waktu order di malam hari**
+  - **Rating tetap rendah meskipun kendaraan dalam kondisi baik**
+- **Dewasa** menerima rating baik secara umum, namun tetap ada kasus rating cukup meskipun kondisi kendaraan dan pengiriman dalam keadaan optimal.
+- **Mature** mendapatkan rating **sempurna (6,0)** meskipun mereka mengalami kondisi pengantaran yang beragam — baik dari sisi cuaca, jarak, durasi, maupun festival. Beberapa informasi juga tidak tersedia.
+
+Temuan ini menunjukkan bahwa:
+> **Faktor teknis seperti kendaraan, kecepatan pengiriman, dan jarak tidak sepenuhnya menentukan penilaian pelanggan.**  
+> Ada kemungkinan bahwa faktor seperti **interaksi kurir, sikap, dan pengalaman pelanggan** turut memengaruhi rating — didukung juga oleh literatur dan domain knowledge.
+
+<img width="1046" height="528" alt="image" src="https://github.com/user-attachments/assets/908752d4-5acd-4911-ba10-b52c8f66a1fa" />
+
+Model **LightGBM** menjadi model terbaik dalam memprediksi `time_taken (min)` dengan RMSE yang menurun sebesar **0,04%** setelah hyperparameter tuning.
+
+Fitur paling berpengaruh dalam model adalah:
+1. `Weather_conditions` (kondisi cuaca)
+2. `distance_km` (jarak pengantaran)
+3. `Road_traffic_density` (kepadatan lalu lintas)
+4. `vehicle_condition` (kondisi kendaraan)
+
+Keempat fitur ini merepresentasikan aspek **teknis** dari proses pengantaran. Oleh karena itu, model menyarankan bahwa peningkatan terhadap fitur-fitur ini dapat membantu mempercepat waktu pengantaran dan meningkatkan efisiensi.
+
 
 
 
