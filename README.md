@@ -1,4 +1,4 @@
-# Finally, it’s always six: When physical isn’t enough - Evaluasi Performa Pengantaran Berdasarkan Dataset Zomato
+# Finally, it’s always six: When physical isn’t enough - Performance Evaluation & Time Prediction in Zomato’s Last-Mile Delivery
 
 ## Latar Belakang Proyek
 Dataset yang digunakan berasal dari salah satu perusahaan layanan pesan antar makanan yaitu **Zomato**. Zomato merupakan platform berbasis di India yang menyediakan layanan pemesanan dan pengantaran makanan dari berbagai kategori. Layanan ini beroperasi di tiga jenis wilayah yaitu **metropolitan**, **urban**, dan **semi-urban**.
@@ -10,7 +10,7 @@ Dalam proyek ini, dilakukan analisis untuk mengevaluasi **performa pengantaran d
 Tujuan dari proyek ini adalah memberikan masukan yang dapat digunakan untuk meningkatkan efisiensi pengantaran, serta mendukung proses pengambilan keputusan dalam pengelolaan operasional kurir.
 
 ## Struktur Data dan Pemeriksaan Awal
-Dataset ini terdiri dari **20 kolom** dan **45.584 baris** yang merepresentasikan aktivitas pengantaran makanan dalam periode 3 bulan. Secara garis besar, data memuat informasi terkait:
+Dataset yang digunakan diperoleh dari [Kaggle: Zomato Delivery Operations Analytics Dataset]([https://www.kaggle.com/datasets/saurabhbadole/zomato-delivery-operations-analytics-dataset]), terdiri dari **20 kolom** dan **45.584 baris** yang merepresentasikan aktivitas pengantaran makanan dalam periode 3 bulan. Secara garis besar, data memuat informasi terkait:
 - **Kurir** sebagai pelaksana pengantaran
 - **Kendaraan** yang digunakan
 - **Kondisi lingkungan saat pengantaran**, seperti cuaca dan kepadatan lalu lintas
