@@ -1,64 +1,64 @@
 # Finally, it’s always six: When physical isn’t enough - Performance Evaluation & Time Prediction in Zomato’s Last-Mile Delivery
 
 ## Latar Belakang Proyek
-Dataset yang digunakan berasal dari salah satu perusahaan layanan pesan antar makanan yaitu **Zomato**. Zomato merupakan platform berbasis di India yang menyediakan layanan pemesanan dan pengantaran makanan dari berbagai kategori. Layanan ini beroperasi di tiga jenis wilayah yaitu **metropolitan**, **urban**, dan **semi-urban**.
+Zomato merupakan platform berbasis di India yang menyediakan layanan pemesanan dan pengantaran makanan dari berbagai kategori. Layanan ini beroperasi di tiga jenis wilayah yaitu **metropolitan**, **urban**, dan **semi-urban**.
 
-Dataset ini mencatat data historis selama **3 bulan di tahun 2022**, yaitu bulan **Februari, Maret, dan April**. Meskipun hanya mencakup 3 bulan, jumlah pesanan yang tercatat mencapai **45.584 pesanan**, yang menunjukkan tingginya volume penggunaan layanan Zomato dalam periode tersebut.
+Dataset yang akan dianalisis mencatat data historis selama **3 bulan di tahun 2022**, yaitu bulan **Februari, Maret, dan April**. Meskipun hanya mencakup 3 bulan, jumlah pesanan yang tercatat mencapai **45.584 pesanan**, yang menunjukkan tingginya volume penggunaan layanan Zomato dalam periode tersebut.
 
 Dalam proyek ini, dilakukan analisis untuk mengevaluasi **performa pengantaran dari perspektif kurir**. Fokusnya adalah melihat faktor-faktor apa saja yang mempengaruhi performa mereka dalam mengantarkan pesanan. Selain itu, juga dibangun **model prediksi** untuk memperkirakan durasi pengantaran berdasarkan variabel-variabel tertentu. 
 
 Tujuan dari proyek ini adalah memberikan masukan yang dapat digunakan untuk meningkatkan efisiensi pengantaran, serta mendukung proses pengambilan keputusan dalam pengelolaan operasional kurir.
 
 ## Struktur Data dan Pemeriksaan Awal
-Dataset yang digunakan diperoleh dari [Kaggle: Zomato Delivery Operations Analytics Dataset](https://www.kaggle.com/datasets/saurabhbadole/zomato-delivery-operations-analytics-dataset), terdiri dari **20 kolom** dan **45.584 baris** yang merepresentasikan aktivitas pengantaran makanan dalam periode 3 bulan. Secara garis besar, data memuat informasi terkait:
+Dataset yang digunakan diperoleh dari [Kaggle: Zomato Delivery Operations Analytics Dataset](https://www.kaggle.com/datasets/saurabhbadole/zomato-delivery-operations-analytics-dataset) dimana terdiri dari **20 kolom** dan **45.584 baris** yang merepresentasikan aktivitas pengantaran makanan dalam periode 3 bulan. Secara garis besar, data memuat informasi terkait:
 - **Kurir** sebagai pelaksana pengantaran
 - **Kendaraan** yang digunakan
 - **Kondisi lingkungan saat pengantaran**, seperti cuaca dan kepadatan lalu lintas
 - **Detail pesanan**, termasuk waktu dan jenis pengiriman
 
 Pada tahap awal pemeriksaan, ditemukan bahwa kondisi data belum sepenuhnya bersih. Beberapa permasalahan yang muncul antara lain:
-- Penamaan kolom yang mengandung **typo** atau tidak konsisten
-- **Format data yang tidak sesuai**, seperti kolom waktu yang belum dikonversi ke tipe datetime
+- Penamaan kolom yang mengandung **kesalahan penulisan** atau tidak konsisten
+- **Format data yang tidak sesuai**
 - Ditemukannya **nilai kosong (NaN)** di sejumlah kolom
 
 ## Metode
 Langkah-langkah yang dilakukan dalam proyek ini meliputi:
 
 ### 1. Data Preparation
-Langkah pertama adalah mempersiapkan data untuk dianalisis. Beberapa hal yang dilakukan:
+Langkah pertama adalah mempersiapkan data untuk dianalisis. Beberapa hal yang dilakukan antara lain:
 - Mengecek kondisi awal data (struktur, tipe data, dll.)
-- Memperbaiki **nama kolom yang typo** agar lebih konsisten dan sesuai
-- Mengubah **format data** (misalnya tipe waktu dari string ke datetime)
+- Memperbaiki **kesalahan penamaan kolom** agar lebih konsisten dan sesuai
+- Mengubah **format data** 
 - Memeriksa informasi dasar kondisi data seperti jumlah nilai kosong dan distribusinya
 
-### 2. Data Cleaning (Data Analyst Perspective)
-Data cleaning dilakukan sebelum masuk ke tahap modeling. Beberapa hal yang dilakukan antara lain:
-- **Tidak ditemukan duplikasi data**
+### 2. Data Cleaning 
+Data cleaning dilakukan sebelum menganalisis data historis secara lebih mendalam. Beberapa hal yang dilakukan antara lain:
+- **Tidak ditemukan baris duplikat**
 - Ditemukan **missing value**, baik berupa `NaN` maupun nilai yang tidak sesuai
 - Nilai yang tidak sesuai diubah menjadi `NaN` untuk menjaga integritas data
-- **Missing value** tidak dihapus karena persentasenya masih di bawah 20%
-- Ditemukan **outlier** di beberapa kolom, namun nilainya masih wajar sehingga **tidak dihapus**
+- **Missing value** tidak dihapus lantaran nilai persentase berada di bawah 20%
+- Ditemukan **outlier** di beberapa kolom, namun karena merupakana nilai yang wajar sehingga **tidak dihapus**
 - Juga ditemukan **pengetikan yang salah** pada beberapa kategori
 
-> Catatan: Proses data cleaning ini masih dalam konteks *data analyst*, belum tahap *machine learning*.
+> Catatan: Proses data cleaning ini masih dalam konteks *data analyst*, belum memasuki tahap *machine learning*.
 
-### 3. Feature Engineering (Pra-Modeling)
+### 3. Feature Engineering
 Feature engineering dilakukan untuk membantu interpretasi dan memudahkan analisis:
-- Membuat label interpretatif dari angka-angka pada kolom sebelumnya
-- Melakukan segmentasi pada kolom numerik kontinu seperti usia (misalnya mengelompokkan range umur)
-- Menambahkan fitur baru yang bisa memperkaya insight dari data
+- Membuat label interpretatif dari sejumlah angka pada kolom sebelumnya
+- Melakukan segmentasi pada kolom numerik kontinu
+- Menambahkan fitur baru yang dapat memperkaya wawasan dari data
 
 ### 4. Exploratory Data Analysis (EDA)
 EDA dilakukan untuk memahami data secara mendalam:
 - **Statistical descriptive** untuk melihat ringkasan data secara umum
-- **Korelasi antar variabel numerik** menggunakan metode **Spearman** (karena terdapat outlier)
-- Untuk variabel kategorikal, korelasi dianalisis melalui **visualisasi**
+- **Korelasi antar variabel numerik** menggunakan metode **Spearman** (karena metode yang robust terhadap outlier)
+- Analisis korelasi variabel kategorikal dilakukan melalui **visualisasi**
 - Analisis khusus dilakukan berdasarkan **kategori usia kurir** terhadap beberapa variabel lain
-- Visualisasi lanjutan dan eksplorasi dilakukan menggunakan **Power BI**, dan disusun dalam bentuk dashboard
+- Visualisasi lanjutan, eksplorasi, dan dashboard dilakukan menggunakan **Power BI**
 
-### 5. Data Preparation untuk Machine Learning
-Sebelum masuk ke model, dilakukan persiapan data lanjutan:
-- Dataset dibersihkan kembali dan dipilih hanya kolom yang relevan
+### 5. Data Preparation (Machine Learning)
+Sebelum memasuki ke tahap model, dilakukan persiapan data lanjutan:
+- Dataset dibersihkan kembali dan dipilih hanya pada kolom yang relevan
 - Dari total kolom, **17 kolom di-drop**, tersisa **14 kolom**
 - Ditemukan 1 kolom dengan missing value di atas 20%, sehingga kolom tersebut dihapus
 - Missing value lainnya diimputasi:
@@ -111,7 +111,7 @@ Berdasarkan hasil analisis data, ditemukan beberapa pola dan insight penting ter
   - **Jarak pengantaran yang jauh**
   - **Waktu order di malam hari**
   - **Rating tetap rendah meskipun kendaraan dalam kondisi baik**
-- **Dewasa** menerima rating baik secara umum, namun tetap ada kasus rating cukup meskipun kondisi kendaraan dan pengiriman dalam keadaan optimal.
+- **Dewasa** menerima rating baik secara umum, namun tetap ditemukan kasus rating bernilai "cukup" meskipun kondisi kendaraan dan pengiriman dalam keadaan optimal.
 - **Mature** mendapatkan rating **sempurna (6,0)** meskipun mereka mengalami kondisi pengantaran yang beragam — baik dari sisi cuaca, jarak, durasi, maupun festival. Beberapa informasi juga tidak tersedia.
 
 Temuan ini menunjukkan bahwa:
@@ -139,7 +139,7 @@ Berdasarkan temuan dari analisis data dan hasil pemodelan, berikut adalah bebera
 Untuk memperoleh hasil evaluasi performa kurir yang lebih komprehensif, perlu adanya perbaikan dan pelengkapan dalam sistem pencatatan data:
 
 - **Menambahkan dimensi kualitatif** yang dapat mengukur faktor interpersonal, seperti sikap dan interaksi kurir dengan pelanggan
-- **Memperbaiki dan mewajibkan pengisian data tertentu** yang masih banyak kosong, terutama pada kategori remaja dan mature
+- **Memperbaiki dan mewajibkan pengisian data tertentu** yang masih banyak ditemukan kosong, terutama pada kategori remaja dan mature
 - **Melengkapi sistem penilaian** dengan memberikan opsi alasan dari rating yang diberikan, agar lebih mudah diinterpretasi dan ditindaklanjuti
 
 #### Aspek Fisik Layanan
